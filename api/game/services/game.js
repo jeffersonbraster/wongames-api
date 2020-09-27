@@ -5,6 +5,7 @@
  * to customize this service
  */
 const axios = require("axios");
+const slugify = require("slugify");
 
 async function getGameInfo(slug) {
   const jsdom = require("jsdom");
@@ -31,6 +32,10 @@ module.exports = {
 
     console.log(products[0]);
 
-    console.log(await getGameInfo(products[1].slug));
+    await strapi.services.publisher.create({name: products[0].publisher, slug: slugify(products[0].publisher).toLowerCase()})
+
+    await strapi.services.developer.create({name: products[0].developer, slug: slugify(products[0].developer).toLowerCase()})
+
+   // console.log(await getGameInfo(products[1].slug));
   }
 };
