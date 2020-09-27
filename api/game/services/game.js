@@ -29,7 +29,7 @@ async function getGameInfo(slug) {
     const description = dom.window.document.querySelector(".description");
 
     return {
-      rating: ratingElement ? ratingElement.getAttribute("xlink:href").replace(/_/g, "").replace(/[^\w-]+/g, "") : "Livre",
+      rating: ratingElement ? ratingElement.getAttribute("xlink:href").replace(/_/g, "").replace(/[^\w-]+/g, "") : "BR0",
       short_description: description.textContent.trim().slice(0, 160),
       description: description.innerHTML,
     }
@@ -52,7 +52,7 @@ async function create(name, entityName) {
   if(!item) {
     return await strapi.services[entityName].create({
       name,
-      slug: slugify(name, {lower: true}),
+      slug: slugify(name, {strict: true, lower: true}),
     })
   }
 }
@@ -166,8 +166,9 @@ module.exports = {
 
       const {data: {products}} = await axios.get(gogApiUrl);
 
-      await createManyToManyData(products);
-      await createGames(products);
+      console.log(products[0]);
+      // await createManyToManyData(products);
+      // await createGames(products);
 
     } catch (e) {
       console.log("populate", Exception(e));

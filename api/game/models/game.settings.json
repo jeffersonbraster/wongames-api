@@ -40,7 +40,7 @@
     "rating": {
       "type": "enumeration",
       "enum": [
-        "Livre",
+        "BR0",
         "BR3",
         "BR7",
         "BR12",
