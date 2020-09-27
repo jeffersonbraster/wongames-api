@@ -40,12 +40,12 @@
     "rating": {
       "type": "enumeration",
       "enum": [
-        "FREE",
-        "pegi3",
-        "pegi7",
-        "pegi12",
-        "pegi16",
-        "pegi18"
+        "Livre",
+        "BR3",
+        "BR7",
+        "BR12",
+        "BR16",
+        "BR18"
       ],
       "required": true,
       "default": "FREE"
